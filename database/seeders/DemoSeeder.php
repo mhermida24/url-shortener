@@ -22,7 +22,7 @@ class DemoSeeder extends Seeder
 
         $links = [
             ['code' => 'laravel', 'url' => 'https://laravel.com/docs', 'weight' => 5],
-            ['code' => 'portfolio', 'url' => 'https://github.com/tu-usuario', 'weight' => 3],
+            ['code' => 'portfolio', 'url' => 'https://github.com/mhermida24', 'weight' => 3],
             ['code' => 'blog', 'url' => 'https://ejemplo.com/articulos/como-aprender-laravel-rapido', 'weight' => 2],
             ['code' => 'cv', 'url' => 'https://ejemplo.com/mi-cv.pdf', 'weight' => 1],
         ];
