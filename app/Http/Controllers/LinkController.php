@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateLinkRequest;
 use App\Models\Link;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Services\LinkStats;
 
 class LinkController extends Controller
 {
@@ -44,9 +45,17 @@ class LinkController extends Controller
     {
         $this->authorize('view', $link);
 
-        $link->loadCount('clicks');
+        $stats = new LinkStats($link);
 
-        return view('links.show', compact('link'));
+        return view('links.show', [
+            'link'      => $link,
+            'total'     => $stats->total(),
+            'perDay'    => $stats->clicksPerDay(30),
+            'browsers'  => $stats->topBrowsers(),
+            'systems'   => $stats->topOs(),
+            'devices'   => $stats->topDevices(),
+            'referers'  => $stats->topReferers(),
+        ]);
     }
 
     public function edit(Link $link)
