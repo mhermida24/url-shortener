@@ -19,6 +19,18 @@
                     </div>
 
                     <div>
+                        <x-input-label for="code" value="Código personalizado (opcional)" />
+                        <div class="flex items-center mt-1">
+                            <span class="text-sm text-gray-500 mr-2">{{ url('/') }}/</span>
+                                <x-text-input id="code" name="code" type="text"
+                                    class="block w-full"
+                                    :value="old('code')"
+                                    placeholder="mi-portfolio" />
+                        </div>
+                        <x-input-error :messages="$errors->get('code')" class="mt-2" />
+                    </div>
+
+                    <div>
                         <x-input-label for="expires_at" value="Fecha de expiración (opcional)" />
                         <x-text-input id="expires_at" name="expires_at" type="datetime-local"
                                       class="mt-1 block w-full"

@@ -33,7 +33,7 @@ class LinkController extends Controller
     {
         $link = $request->user()->links()->create([
             ...$request->validated(),
-            'code' => Link::generateCode(),
+            'code' => $request->validated('code') ?? Link::generateCode(),
         ]);
 
         return redirect()
