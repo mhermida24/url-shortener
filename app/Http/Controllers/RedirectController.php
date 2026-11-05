@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Link;
+use App\Services\ClickRecorder;
 use Illuminate\Http\Request;
 
 class RedirectController extends Controller
 {
-    public function __invoke(Request $request, string $code)
+    public function __invoke(Request $request, string $code, ClickRecorder $recorder)
     {
         $link = Link::where('code', $code)->firstOrFail();
 
@@ -19,11 +20,7 @@ class RedirectController extends Controller
             abort(410, 'Este enlace alcanzó su límite de clics.');
         }
 
-        $link->clicks()->create([
-            'ip'         => $request->ip(),
-            'user_agent' => $request->userAgent(),
-            'referer'    => $request->headers->get('referer'),
-        ]);
+        $recorder->record($link, $request);
 
         return redirect()->away($link->original_url);
     }
