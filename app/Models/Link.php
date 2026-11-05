@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Link extends Model
 {
@@ -22,5 +23,14 @@ class Link extends Model
     public function clicks(): HasMany
     {
         return $this->hasMany(Click::class);
+    }
+
+    public static function generateCode(int $length = 6): string
+    {
+        do {
+            $code = Str::random($length);
+        } while (static::where('code', $code)->exists());
+
+        return $code;
     }
 }
