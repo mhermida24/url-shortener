@@ -3,6 +3,15 @@
 Acortador de enlaces con panel de estadísticas, hecho con Laravel y MySQL.
 Cada enlace registra sus clics y muestra de dónde vienen y con qué dispositivo.
 
+## Capturas
+
+### Nuevo enlace
+![Formulario de nuevo enlace](docs/create.png)
+
+### Mis enlaces
+![Listado de enlaces](docs/links.png)
+
+### Panel de estadísticas
 ![Estadísticas](docs/stats.png)
 
 ## Funcionalidades
